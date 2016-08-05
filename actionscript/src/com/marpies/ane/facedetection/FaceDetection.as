@@ -169,7 +169,7 @@ package com.marpies.ane.facedetection {
                         var faces:Vector.<Face> = getFacesFromJSON( json.faces as Array );
                         var callback:Function = getCallback( callbackId );
                         if( callback !== null ) {
-                            callback( faces );
+                            callback( faces, null );
                         }
                     }
                     return;
