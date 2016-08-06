@@ -157,18 +157,28 @@ package com.marpies.ane.facedetection {
          */
 
         private static function onStatus( event:StatusEvent ):void {
+            var json:Object = null;
+            var callback:Function = null;
+            var callbackId:int = -1;
             switch( event.code ) {
                 case FACE_DETECTION_ERROR:
-
+                    json = JSON.parse( event.level );
+                    var errorMessage:String = json.errorMessage;
+                    callbackId = json.listenerID;
+                    callback = getCallback( callbackId );
+                    if( callback !== null ) {
+                        unregisterCallback( callbackId );
+                        callback( null, errorMessage );
+                    }
                     return;
                 case FACE_DETECTION_COMPLETE:
-                    var json:Object = JSON.parse( event.level );
-                    var callbackId:int = -1;
+                    json = JSON.parse( event.level );
                     if( "callbackId" in json ) {
                         callbackId = json.callbackId;
-                        var faces:Vector.<Face> = getFacesFromJSON( json.faces as Array );
-                        var callback:Function = getCallback( callbackId );
+                        var faces:Vector.<Face> = getFacesFromJSON( json.faces );
+                        callback = getCallback( callbackId );
                         if( callback !== null ) {
+                            unregisterCallback( callbackId );
                             callback( faces, null );
                         }
                     }
@@ -176,12 +186,16 @@ package com.marpies.ane.facedetection {
             }
         }
 
-        private static function getFacesFromJSON( faces:Array ):Vector.<Face> {
+        private static function getFacesFromJSON( faces:Object ):Vector.<Face> {
             if( faces === null ) return null;
+            if( faces is String ) {
+                faces = JSON.parse( faces as String );
+            }
+            var facesArray:Array = faces as Array;
             var result:Vector.<Face> = new <Face>[];
-            var length:int = faces.length;
+            var length:int = facesArray.length;
             for( var i:int = 0; i < length; ++i ) {
-                var faceJSON:Object = faces[i];
+                var faceJSON:Object = facesArray[i];
                 if( faceJSON is String ) {
                     faceJSON = JSON.parse( faceJSON as String );
                 }
