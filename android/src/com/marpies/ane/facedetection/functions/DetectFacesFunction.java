@@ -82,6 +82,7 @@ public class DetectFacesFunction extends BaseFunction {
 						final FaceDetector detector = fb.build();
 						Detector<Face> sd = new SafeFaceDetector( detector );
 						if( !sd.isOperational() ) {
+							sd.release();
 							AIR.log( "Error, detector is not operational." );
 							AIR.dispatchEvent( FaceDetectionEvent.FACE_DETECTION_ERROR, "Detector is not operational. Dependencies may have not been downloaded yet. Please, try again later." );
 							return;
@@ -94,6 +95,8 @@ public class DetectFacesFunction extends BaseFunction {
 						/* Build faces JSONArray */
 						JSONArray facesResult = getFacesJSONArray( faces );
 						dispatchResponse( facesResult, callbackId );
+
+						sd.release();
 					}
 				}
 		).start();
