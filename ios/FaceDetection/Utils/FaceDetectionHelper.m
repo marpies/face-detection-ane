@@ -62,11 +62,11 @@ static FaceDetectionHelper* airFdSharedInstance = nil;
         NSArray* features = [detector featuresInImage:coreImage options:opts];
         [FaceDetection log:[NSString stringWithFormat:@"Got CGImage and num of faces: %lu", (unsigned long)[features count]]];
         NSMutableArray* facesResult = [NSMutableArray array];
-        for( CIFaceFeature* f in features ) {
+        for( CIFaceFeature* face in features ) {
             if( [FaceDetection isLogEnabled] ) {
-                [self printFace:f imageHeight:imageHeight];
+                [self printFace:face imageHeight:imageHeight];
             }
-            [facesResult addObject:[self getFaceJSON:f imageHeight:imageHeight]];
+            [facesResult addObject:[self getFaceJSON:face imageHeight:imageHeight]];
         }
         
         dispatch_async( dispatch_get_main_queue(), ^{
