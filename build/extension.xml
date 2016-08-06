@@ -1,0 +1,33 @@
+<extension xmlns="http://ns.adobe.com/air/extension/20.0">
+  <id>com.marpies.ane.facedetection</id>
+  <versionNumber>0.2.0</versionNumber>
+  <platforms>
+    <platform name="iPhone-ARM">
+        <applicationDeployment>
+            <nativeLibrary>libFaceDetection.a</nativeLibrary>
+            <initializer>FaceDetectionInitializer</initializer>
+            <finalizer>FaceDetectionFinalizer</finalizer>
+        </applicationDeployment>
+    </platform>
+
+    <platform name="Android-ARM">
+        <applicationDeployment>
+            <nativeLibrary>libFaceDetection.jar</nativeLibrary>
+            <initializer>com.marpies.ane.facedetection.FaceDetectionExtension</initializer>
+            <finalizer>com.marpies.ane.facedetection.FaceDetectionExtension</finalizer>
+        </applicationDeployment>
+    </platform>
+
+    <platform name="Android-x86">
+        <applicationDeployment>
+            <nativeLibrary>libFaceDetection.jar</nativeLibrary>
+            <initializer>com.marpies.ane.facedetection.FaceDetectionExtension</initializer>
+            <finalizer>com.marpies.ane.facedetection.FaceDetectionExtension</finalizer>
+        </applicationDeployment>
+    </platform>
+
+    <platform name="default">
+        <applicationDeployment/>
+    </platform>
+  </platforms>
+</extension>
