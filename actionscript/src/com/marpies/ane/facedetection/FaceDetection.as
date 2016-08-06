@@ -22,6 +22,9 @@ package com.marpies.ane.facedetection {
     import flash.system.Capabilities;
     import flash.utils.Dictionary;
 
+    /**
+     * Class providing APIs for face detection.
+     */
     public class FaceDetection {
 
         private static const TAG:String = "[FaceDetection]";
@@ -61,7 +64,7 @@ package com.marpies.ane.facedetection {
         /**
          * Detects faces in the provided image.
          * 
-         * @param imageData
+         * @param imageData <code>BitmapData</code> of the image to detect faces on.
          * @param callback Function with the following signature:
          * <listing version="3.0">
          * function callback( faces:Vector.&lt;Face&gt;, errorMessage:String ):void {
@@ -69,9 +72,9 @@ package com.marpies.ane.facedetection {
          * };
          * </listing>
          *
-         * @param options
+         * @param options Options for the detector. If not provided, default values are used.
          *
-         * @return <code>true</code> if the extension context was created, <code>false</code> otherwise
+         * @see com.marpies.ane.facedetection.FaceDetectionOptions
          */
         public static function detect( imageData:BitmapData, callback:Function, options:FaceDetectionOptions = null ):void {
             if( !isSupported ) return;

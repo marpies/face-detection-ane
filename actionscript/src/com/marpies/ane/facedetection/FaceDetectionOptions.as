@@ -1,5 +1,8 @@
 package com.marpies.ane.facedetection {
 
+    /**
+     * Object allowing to specify several face detection options.
+     */
     public class FaceDetectionOptions {
 
         private var mAccuracy:int;
@@ -7,6 +10,9 @@ package com.marpies.ane.facedetection {
         private var mDetectSmile:Boolean;
         private var mProminentFaceOnly:Boolean;
 
+        /**
+         * @private
+         */
         public function FaceDetectionOptions() {
             mAccuracy = FaceDetectionAccuracy.HIGH;
         }
@@ -15,9 +21,9 @@ package com.marpies.ane.facedetection {
          * Face detection accuracy. High accuracy will generally result in longer runtime.
          * Lower accuracy will generally result in detecting fewer faces.
          *
-         * @default #com.marpies.ane.facedetection.FaceDetectionAccuracy.HIGH
+         * @default FaceDetectionAccuracy.HIGH
          *
-         * @see #com.marpies.ane.facedetection.FaceDetectionAccuracy
+         * @see com.marpies.ane.facedetection.FaceDetectionAccuracy
          */
         public function get accuracy():int {
             return mAccuracy;
@@ -30,18 +36,34 @@ package com.marpies.ane.facedetection {
             mAccuracy = value;
         }
 
+        /**
+         * Set to <code>true</code> to enable detection of open eyes.
+         *
+         * @default false
+         */
         public function get detectOpenEyes():Boolean {
             return mDetectOpenEyes;
         }
 
+        /**
+         * @private
+         */
         public function set detectOpenEyes( value:Boolean ):void {
             mDetectOpenEyes = value;
         }
 
+        /**
+         * Set to <code>true</code> to enable detection of smile.
+         *
+         * @default false
+         */
         public function get detectSmile():Boolean {
             return mDetectSmile;
         }
 
+        /**
+         * @private
+         */
         public function set detectSmile( value:Boolean ):void {
             mDetectSmile = value;
         }
@@ -58,6 +80,9 @@ package com.marpies.ane.facedetection {
             return mProminentFaceOnly;
         }
 
+        /**
+         * @private
+         */
         public function set prominentFaceOnly( value:Boolean ):void {
             mProminentFaceOnly = value;
         }
