@@ -89,7 +89,7 @@ To run the detection, call the [detect](actionscript/src/com/marpies/ane/facedet
 FaceDetection.detect( bitmapData, onDetectionComplete, options );
 ```
 
-The detection process is asynchronous; the callback method is called once the process is finished successfully or with an error:
+The detection process is asynchronous; the callback method is called once the process is finished successfully or with an error. The callback is expected to accept list of detected faces and a `String` that specifies an error message, in cases when a problem occurs.
 
 ```as3
 function onDetectionComplete( faces:Vector.<Face>, errorMessage:String ):void {
@@ -100,7 +100,6 @@ function onDetectionComplete( faces:Vector.<Face>, errorMessage:String ):void {
     }
 }
 ```
-The callback is expected to accept list of detected faces and a `String` that specifies an error message, in cases when a problem occurs.
 
 #### Face object
 
