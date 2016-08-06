@@ -87,13 +87,15 @@ static FaceDetectionHelper* airFdSharedInstance = nil;
     json[@"leftEyeOpenProbability"] = face.leftEyeClosed ? @(0) : @(1);
     json[@"rightEyeOpenProbability"] = face.rightEyeClosed ? @(0) : @(1);
     json[@"isSmilingProbability"] = face.hasSmile ? @(1) : @(0);
+    /* Eye position is returned as relative to the subject, i.e. left
+     * eye position given by the detector is the subject's right eye.  */
     if( face.hasLeftEyePosition ) {
-        json[@"leftEyeX"] = @(face.leftEyePosition.x);
-        json[@"leftEyeY"] = @(imageHeight - face.leftEyePosition.y);
+        json[@"rightEyeX"] = @(face.leftEyePosition.x);
+        json[@"rightEyeY"] = @(imageHeight - face.leftEyePosition.y);
     }
     if( face.hasRightEyePosition ) {
-        json[@"rightEyeX"] = @(face.rightEyePosition.x);
-        json[@"rightEyeY"] = @(imageHeight - face.rightEyePosition.y);
+        json[@"leftEyeX"] = @(face.rightEyePosition.x);
+        json[@"leftEyeY"] = @(imageHeight - face.rightEyePosition.y);
     }
     if( face.hasMouthPosition ) {
         json[@"mouthX"] = @(face.mouthPosition.x);
