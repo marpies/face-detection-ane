@@ -141,7 +141,7 @@ package com.marpies.ane.facedetection {
          * Extension version.
          */
         public static function get version():String {
-            return "0.2.0";
+            return "1.0.0";
         }
 
         /**
