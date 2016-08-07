@@ -121,6 +121,14 @@ face.leftEyePosition : Point
 face.rightEyePosition : Point
 ```
 
+#### isOperational : Boolean
+
+Checks whether the internal detector is operational. On Android, it checks whether necessary libraries have been downloaded, which means the detection may not work shortly after launching an app for the very first time. Unfortunately, there is no callback to find out when the libraries are ready, so *try again later* approach must be used. On iOS, it is always `true`.
+
+#### isAvailable : Boolean
+
+Checks whether *Google Play Services* APK is installed on the device. It is necessary for the detector to function properly. On iOS, it is always `true`.
+
 ## Requirements
 
 * iOS 7+
