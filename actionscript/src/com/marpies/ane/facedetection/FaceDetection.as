@@ -157,8 +157,8 @@ package com.marpies.ane.facedetection {
          * which means the detection may not work shortly after launching an app
          * for the very first time.</p>
          *
-         * <p>Unfortunately, there is not callback to find out when the libraries are
-         * ready, so <em>'try again later</em> approach must be used.</p>
+         * <p>Unfortunately, there is no callback to find out when the libraries are
+         * ready, so <em>'try again later'</em> approach must be used.</p>
          *
          * <p>On iOS, it is always <code>true</code></p>
          */
