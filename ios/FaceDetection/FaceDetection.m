@@ -17,6 +17,8 @@
 #import "FaceDetection.h"
 #import "Functions/DetectFacesFunction.h"
 #import "Functions/SetLogEnabledFunction.h"
+#import "Functions/IsAvailableFunction.h"
+#import "Functions/IsOperationalFunction.h"
 
 static BOOL FaceDetectionLogEnabled = NO;
 FREContext FaceDetectionExtContext = nil;
@@ -58,7 +60,9 @@ FREContext FaceDetectionExtContext = nil;
 
 FRENamedFunction FaceDetection_extFunctions[] = {
     { (const uint8_t*) "detect",        0, fd_detectFaces },
-    { (const uint8_t*) "setLogEnabled", 0, fd_setLogEnabled }
+    { (const uint8_t*) "setLogEnabled", 0, fd_setLogEnabled },
+    { (const uint8_t*) "isAvailable",   0, fd_isAvailable },
+    { (const uint8_t*) "isOperational", 0, fd_isOperational }
 };
 
 void FaceDetectionContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet ) {

@@ -10,6 +10,8 @@
 		C302F9321D550E2E00AB049D /* SetLogEnabledFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C302F9311D550E2E00AB049D /* SetLogEnabledFunction.m */; };
 		C302F9351D550EF000AB049D /* DetectFacesFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C302F9341D550EF000AB049D /* DetectFacesFunction.m */; };
 		C302F93A1D55106200AB049D /* FaceDetectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C302F9391D55106200AB049D /* FaceDetectionHelper.m */; };
+		C302F93D1D57238A00AB049D /* IsAvailableFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C302F93C1D57238A00AB049D /* IsAvailableFunction.m */; };
+		C302F9401D5723E500AB049D /* IsOperationalFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C302F93F1D5723E500AB049D /* IsOperationalFunction.m */; };
 		C3073AE41BE2C77C00EC89B7 /* FaceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3073AD71BE2C77C00EC89B7 /* FaceDetection.m */; };
 		C37509FA1C79388900516C15 /* AIRExtHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37509F91C79388900516C15 /* AIRExtHelpers.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,10 @@
 		C302F9361D550FC600AB049D /* FaceDetectionEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceDetectionEvent.h; sourceTree = "<group>"; };
 		C302F9381D55106200AB049D /* FaceDetectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FaceDetectionHelper.h; path = Utils/FaceDetectionHelper.h; sourceTree = "<group>"; };
 		C302F9391D55106200AB049D /* FaceDetectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FaceDetectionHelper.m; path = Utils/FaceDetectionHelper.m; sourceTree = "<group>"; };
+		C302F93B1D57238A00AB049D /* IsAvailableFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsAvailableFunction.h; sourceTree = "<group>"; };
+		C302F93C1D57238A00AB049D /* IsAvailableFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsAvailableFunction.m; sourceTree = "<group>"; };
+		C302F93E1D5723E500AB049D /* IsOperationalFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsOperationalFunction.h; sourceTree = "<group>"; };
+		C302F93F1D5723E500AB049D /* IsOperationalFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsOperationalFunction.m; sourceTree = "<group>"; };
 		C3073AD61BE2C77C00EC89B7 /* FaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetection.h; sourceTree = "<group>"; };
 		C3073AD71BE2C77C00EC89B7 /* FaceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetection.m; sourceTree = "<group>"; };
 		C35331DE1B7BCE8A003A7521 /* libFaceDetection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFaceDetection.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +95,10 @@
 				C302F9341D550EF000AB049D /* DetectFacesFunction.m */,
 				C302F9301D550E2E00AB049D /* SetLogEnabledFunction.h */,
 				C302F9311D550E2E00AB049D /* SetLogEnabledFunction.m */,
+				C302F93B1D57238A00AB049D /* IsAvailableFunction.h */,
+				C302F93C1D57238A00AB049D /* IsAvailableFunction.m */,
+				C302F93E1D5723E500AB049D /* IsOperationalFunction.h */,
+				C302F93F1D5723E500AB049D /* IsOperationalFunction.m */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -173,9 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C302F9401D5723E500AB049D /* IsOperationalFunction.m in Sources */,
 				C302F9351D550EF000AB049D /* DetectFacesFunction.m in Sources */,
 				C302F9321D550E2E00AB049D /* SetLogEnabledFunction.m in Sources */,
 				C302F93A1D55106200AB049D /* FaceDetectionHelper.m in Sources */,
+				C302F93D1D57238A00AB049D /* IsAvailableFunction.m in Sources */,
 				C3073AE41BE2C77C00EC89B7 /* FaceDetection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
