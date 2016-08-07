@@ -32,6 +32,8 @@ public class FaceDetectionExtensionContext extends FREContext {
 
 		functions.put( "detect", new DetectFacesFunction() );
 		functions.put( "setLogEnabled", new SetLogEnabledFunction() );
+		functions.put( "isOperational", new IsOperationalFunction() );
+		functions.put( "isAvailable", new IsAvailableFunction() );
 
 		return functions;
 	}
