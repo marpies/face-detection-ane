@@ -138,6 +138,38 @@ package com.marpies.ane.facedetection {
          */
 
         /**
+         * Checks whether <em>Google Play Services</em> APK is installed on the device.
+         * It is necessary for the detector to function properly.
+         *
+         * <p>On iOS, it is always <code>true</code></p>
+         */
+        public static function get isAvailable():Boolean {
+            if( !isSupported ) return false;
+            if( !initExtensionContext() ) return false;
+
+            return mContext.call( "isAvailable" ) as Boolean;
+        }
+
+        /**
+         * Checks whether the internal detector is operational.
+         *
+         * <p>On Android, it checks whether necessary libraries have been downloaded,
+         * which means the detection may not work shortly after launching an app
+         * for the very first time.</p>
+         *
+         * <p>Unfortunately, there is not callback to find out when the libraries are
+         * ready, so <em>'try again later</em> approach must be used.</p>
+         *
+         * <p>On iOS, it is always <code>true</code></p>
+         */
+        public static function get isOperational():Boolean {
+            if( !isSupported ) return false;
+            if( !initExtensionContext() ) return false;
+
+            return mContext.call( "isOperational" ) as Boolean;
+        }
+
+        /**
          * Extension version.
          */
         public static function get version():String {
