@@ -18,7 +18,11 @@ package com.marpies.ane.facedetection {
 
     import flash.display.BitmapData;
     import flash.events.StatusEvent;
-    import flash.external.ExtensionContext;
+
+    CONFIG::ane {
+        import flash.external.ExtensionContext;
+    }
+
     import flash.system.Capabilities;
     import flash.utils.Dictionary;
 
@@ -32,7 +36,9 @@ package com.marpies.ane.facedetection {
         private static const iOS:Boolean = Capabilities.manufacturer.indexOf( "iOS" ) > -1;
         private static const ANDROID:Boolean = Capabilities.manufacturer.indexOf( "Android" ) > -1;
 
-        private static var mContext:ExtensionContext;
+        CONFIG::ane {
+            private static var mContext:ExtensionContext;
+        }
 
         /* Event codes */
         private static const FACE_DETECTION_COMPLETE:String = "faceDetectionComplete";
@@ -63,7 +69,7 @@ package com.marpies.ane.facedetection {
 
         /**
          * Detects faces in the provided image.
-         * 
+         *
          * @param imageData <code>BitmapData</code> of the image to detect faces on.
          * @param callback Function with the following signature:
          * <listing version="3.0">
@@ -77,7 +83,12 @@ package com.marpies.ane.facedetection {
          * @see com.marpies.ane.facedetection.FaceDetectionOptions
          */
         public static function detect( imageData:BitmapData, callback:Function, options:FaceDetectionOptions = null ):void {
-            if( !isSupported ) return;
+            if( !isSupported ) {
+                if( callback !== null ) {
+                    callback( null, "Current platform is not supported." );
+                }
+                return;
+            }
 
             if( imageData === null ) throw new ArgumentError( "Parameter imageData cannot be null." );
             if( callback === null ) throw new ArgumentError( "Parameter callback cannot be null." );
@@ -93,8 +104,10 @@ package com.marpies.ane.facedetection {
                 return;
             }
             /* Listen for native library events */
-            if( !mContext.hasEventListener( StatusEvent.STATUS ) ) {
-                mContext.addEventListener( StatusEvent.STATUS, onStatus );
+            CONFIG::ane {
+                if( !mContext.hasEventListener( StatusEvent.STATUS ) ) {
+                    mContext.addEventListener( StatusEvent.STATUS, onStatus );
+                }
             }
 
             if( mCallbackMap === null ) {
@@ -102,7 +115,9 @@ package com.marpies.ane.facedetection {
             }
 
             /* Call init */
-            mContext.call( "detect", imageData, registerCallback( callback ), options.accuracy, options.detectOpenEyes, options.detectSmile, options.prominentFaceOnly );
+            CONFIG::ane {
+                mContext.call( "detect", imageData, registerCallback( callback ), options.accuracy, options.detectOpenEyes, options.detectSmile, options.prominentFaceOnly );
+            }
         }
 
         /**
@@ -114,7 +129,9 @@ package com.marpies.ane.facedetection {
 
             mLogEnabled = value;
 
-            mContext.call( "setLogEnabled", value );
+            CONFIG::ane {
+                mContext.call( "setLogEnabled", value );
+            }
         }
 
         /**
@@ -124,9 +141,11 @@ package com.marpies.ane.facedetection {
             if( !isSupported ) return;
             validateExtensionContext();
 
-            mContext.removeEventListener( StatusEvent.STATUS, onStatus );
-            mContext.dispose();
-            mContext = null;
+            CONFIG::ane {
+                mContext.removeEventListener( StatusEvent.STATUS, onStatus );
+                mContext.dispose();
+                mContext = null;
+            }
         }
 
         /**
@@ -147,7 +166,11 @@ package com.marpies.ane.facedetection {
             if( !isSupported ) return false;
             if( !initExtensionContext() ) return false;
 
-            return mContext.call( "isAvailable" ) as Boolean;
+            var result:Boolean;
+            CONFIG::ane {
+                result = mContext.call( "isAvailable" ) as Boolean;
+            }
+            return result;
         }
 
         /**
@@ -166,7 +189,11 @@ package com.marpies.ane.facedetection {
             if( !isSupported ) return false;
             if( !initExtensionContext() ) return false;
 
-            return mContext.call( "isOperational" ) as Boolean;
+            var result:Boolean;
+            CONFIG::ane {
+                result = mContext.call( "isOperational" ) as Boolean;
+            }
+            return result;
         }
 
         /**
@@ -244,14 +271,20 @@ package com.marpies.ane.facedetection {
          * @return <code>true</code> if initialized successfully, <code>false</code> otherwise.
          */
         private static function initExtensionContext():Boolean {
-            if( mContext === null ) {
-                mContext = ExtensionContext.createExtensionContext( EXTENSION_ID, null );
+            var result:Boolean;
+            CONFIG::ane {
+                if( mContext === null ) {
+                    mContext = ExtensionContext.createExtensionContext( EXTENSION_ID, null );
+                }
+                result = mContext !== null;
             }
-            return mContext !== null;
+            return result;
         }
 
         private static function validateExtensionContext():void {
-            if( !mContext ) throw new Error( "FaceDetection extension was not initialized. Call init() first." );
+            CONFIG::ane {
+                if( !mContext ) throw new Error( "FaceDetection extension was not initialized. Call init() first." );
+            }
         }
 
         /**
