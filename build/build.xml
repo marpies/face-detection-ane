@@ -41,7 +41,6 @@
             <fileset dir="../ios/FaceDetection/Frameworks/AIRExtHelpers.framework"/>
         </copy>
 
-        <copy file="temp/swc/content/library.swf" todir="temp/ios" overwrite="true"/>
         <!-- remove the build directory -->
         <delete dir="temp/ios/build/"/>
     </target>
@@ -105,6 +104,7 @@
 
         <exec executable="${air.sdk}/bin/compc${bin.ext}" failonerror="true">
             <env key="AIR_SDK_HOME" value="${air.sdk}"/>
+            <arg line='-define+=CONFIG::ane,true'/>
             <arg line='-source-path ../actionscript/src'/>
             <arg line='-output temp/swc/${name}.swc'/>
             <arg line='-swf-version=26'/>
@@ -113,11 +113,26 @@
         </exec>
 
         <unzip src="temp/swc/${name}.swc" dest="temp/swc/content" overwrite="true"/>
-        <!-- Copy .swc to bin directory -->
-        <copy file="temp/swc/${name}.swc" tofile="../bin/${packageName}.swc" overwrite="true" />
 
         <copy file="temp/swc/content/library.swf" todir="temp/ios" overwrite="true"/>
         <copy file="temp/swc/content/library.swf" todir="temp/android" overwrite="true"/>
+
+        <!-- Create SWC without flash.external.ExtensionContext dependency -->
+        <delete file="temp/swc/${name}.swc" />
+        <delete dir="temp/swc/content"/>
+        <exec executable="${air.sdk}/bin/compc${bin.ext}" failonerror="true">
+            <env key="AIR_SDK_HOME" value="${air.sdk}"/>
+            <arg line='-define+=CONFIG::ane,false'/>
+            <arg line='-source-path ../actionscript/src'/>
+            <arg line='-output temp/swc/${name}.swc'/>
+            <arg line='-swf-version=26'/>
+            <arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"'/>
+            <arg line='-include-classes ${classlist}'/>
+        </exec>
+        <unzip src="temp/swc/${name}.swc" dest="temp/swc/content" overwrite="true"/>
+        <!-- Copy .swc to bin directory -->
+        <copy file="temp/swc/${name}.swc" tofile="../bin/${packageName}.swc" overwrite="true" />
+        <!-- Use the SWF for the default target -->
         <copy file="temp/swc/content/library.swf" todir="temp/default" overwrite="true"/>
     </target>
 
