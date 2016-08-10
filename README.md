@@ -146,6 +146,10 @@ The ANE has been written by [Marcel Piestansky](https://twitter.com/marpies) and
 
 ## Changelog
 
+#### August 10, 2016 (v1.0.1)
+
+* REMOVED `flash.external.ExtensionContext` dependency from SWC and SWF targeting default platform
+
 #### August 7, 2016 (v1.0.0)
 
 * Public release
