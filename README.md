@@ -1,8 +1,8 @@
-# FaceDetection | Native extension for Adobe AIR (iOS & Android)
-
-Development of this extension is supported by [Master Tigra, Inc.](https://github.com/mastertigra)
+# Face Detection | Native extension for Adobe AIR (iOS & Android)
 
 #### Native extension providing ActionScript interface for [Google's Mobile Vision](https://developers.google.com/vision/) and [Apple's CoreImage](https://developer.apple.com/library/ios/documentation/CoreImage/Reference/CIDetector_Ref/index.html#//apple_ref/occ/cl/CIDetector) face detector APIs.
+
+Development of this extension is supported by [Master Tigra, Inc.](https://github.com/mastertigra)
 
 ## Getting started
 
