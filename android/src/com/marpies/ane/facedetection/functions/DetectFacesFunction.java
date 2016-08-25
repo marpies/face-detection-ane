@@ -161,21 +161,28 @@ public class DetectFacesFunction extends BaseFunction {
 		/* Mouth position */
 		int landmarkType = landmark.getType();
 		String landmarkKey = getLandmarkKey( landmarkType );
-		switch( landmarkType ) {
-			case Landmark.BOTTOM_MOUTH:
-			case Landmark.LEFT_EYE:
-			case Landmark.RIGHT_EYE:
-				json.put( landmarkKey + "X", landmark.getPosition().x );
-				json.put( landmarkKey + "Y", landmark.getPosition().y );
-				return;
+		if( landmarkKey != null ) {
+			json.put( landmarkKey + "X", landmark.getPosition().x );
+			json.put( landmarkKey + "Y", landmark.getPosition().y );
 		}
 	}
 
 	private String getLandmarkKey( int landmarkType ) {
-		if( landmarkType == Landmark.BOTTOM_MOUTH ) return "mouth";
-		if( landmarkType == Landmark.LEFT_EYE ) return "leftEye";
-		if( landmarkType == Landmark.RIGHT_EYE ) return "rightEye";
-		return null;
+		switch( landmarkType ) {
+			case Landmark.BOTTOM_MOUTH: return "mouth";
+			case Landmark.LEFT_EYE: return "leftEye";
+			case Landmark.RIGHT_EYE: return "rightEye";
+			case Landmark.LEFT_EAR: return "leftEar";
+			case Landmark.LEFT_EAR_TIP: return "leftEarTip";
+			case Landmark.LEFT_CHEEK: return "leftCheek";
+			case Landmark.LEFT_MOUTH: return "leftMouth";
+			case Landmark.RIGHT_EAR: return "rightEar";
+			case Landmark.RIGHT_EAR_TIP: return "rightEarTip";
+			case Landmark.RIGHT_CHEEK: return "rightCheek";
+			case Landmark.RIGHT_MOUTH: return "rightMouth";
+			case Landmark.NOSE_BASE: return "noseBase";
+			default: return null;
+		}
 	}
 
 }
