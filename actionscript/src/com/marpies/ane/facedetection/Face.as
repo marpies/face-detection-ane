@@ -18,8 +18,17 @@ package com.marpies.ane.facedetection {
         private var mIsSmilingProbability:Number = 0;
 
         private var mLeftEyePosition:Point;
+        private var mLeftMouthPosition:Point;
+        private var mLeftEarPosition:Point;
+        private var mLeftEarTipPosition:Point;
+        private var mLeftCheekPosition:Point;
         private var mRightEyePosition:Point;
+        private var mRightMouthPosition:Point;
+        private var mRightEarPosition:Point;
+        private var mRightEarTipPosition:Point;
+        private var mRightCheekPosition:Point;
         private var mMouthPosition:Point;
+        private var mNoseBasePosition:Point;
         private var mBounds:Rectangle;
 
         /**
@@ -36,11 +45,32 @@ package com.marpies.ane.facedetection {
             face.mLeftEyeOpenProbability = json.leftEyeOpenProbability;
             face.mRightEyeOpenProbability = json.rightEyeOpenProbability;
             face.mIsSmilingProbability = json.isSmilingProbability;
-            face.mLeftEyePosition = new Point( json.leftEyeX, json.leftEyeY );
-            face.mRightEyePosition = new Point( json.rightEyeX, json.rightEyeY );
-            face.mMouthPosition = new Point( json.mouthX, json.mouthY );
+            face.mLeftEyePosition = getLandmarkPosition( "leftEye", json );
+            face.mRightEyePosition = getLandmarkPosition( "rightEye", json );
+            face.mMouthPosition = getLandmarkPosition( "mouth", json );
+            face.mLeftMouthPosition = getLandmarkPosition( "leftMouth", json );
+            face.mLeftEarPosition = getLandmarkPosition( "leftEar", json );
+            face.mLeftEarTipPosition = getLandmarkPosition( "leftEarTip", json );
+            face.mLeftCheekPosition = getLandmarkPosition( "leftCheek", json );
+            face.mRightMouthPosition = getLandmarkPosition( "rightMouth", json );
+            face.mRightEarPosition = getLandmarkPosition( "rightEar", json );
+            face.mRightEarTipPosition = getLandmarkPosition( "rightEarTip", json );
+            face.mRightCheekPosition = getLandmarkPosition( "rightCheek", json );
+            face.mNoseBasePosition = getLandmarkPosition( "noseBase", json );
             face.mBounds = new Rectangle( json.faceX, json.faceY, json.faceWidth, json.faceHeight );
             return face;
+        }
+
+        /**
+         * @private
+         */
+        private static function getLandmarkPosition( landmark:String, json:Object ):Point {
+            var landmarkKeyX:String = landmark + "X";
+            if( landmarkKeyX in json ) {
+                var landmarkKeyY:String = landmark + "Y";
+                return new Point( json[landmarkKeyX], json[landmarkKeyY] );
+            }
+            return null;
         }
 
         /**
@@ -101,6 +131,78 @@ package com.marpies.ane.facedetection {
          */
         public function get rightEyeOpenProbability():Number {
             return mRightEyeOpenProbability;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns subject's left mouth corner where the lips meet,
+         * or <code>null</code> if not available.
+         */
+        public function get leftMouthPosition():Point {
+            return mLeftMouthPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns midpoint of the subject's left ear tip and left ear lobe,
+         * or <code>null</code> if not available.
+         */
+        public function get leftEarPosition():Point {
+            return mLeftEarPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Treating the top of the subject's left ear as a circle, this is the point
+         * at 45 degrees around the circle in Cartesian coordinates, or <code>null</code> if not available.
+         */
+        public function get leftEarTipPosition():Point {
+            return mLeftEarTipPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns midpoint between the subject's left mouth corner and the outer
+         * corner of the subject's left eye, or <code>null</code> if not available.
+         */
+        public function get leftCheekPosition():Point {
+            return mLeftCheekPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns subject's right mouth corner where the lips meet,
+         * or <code>null</code> if not available.
+         */
+        public function get rightMouthPosition():Point {
+            return mRightMouthPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns midpoint of the subject's right ear tip and right ear lobe,
+         * or <code>null</code> if not available.
+         */
+        public function get rightEarPosition():Point {
+            return mRightEarPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Treating the top of the subject's right ear as a circle, this is the point
+         * at 135 degrees around the circle in Cartesian coordinates, or <code>null</code> if not available.
+         */
+        public function get rightEarTipPosition():Point {
+            return mRightEarTipPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns midpoint between the subject's right mouth corner and the outer
+         * corner of the subject's right eye, or <code>null</code> if not available.
+         */
+        public function get rightCheekPosition():Point {
+            return mRightCheekPosition;
+        }
+
+        /**
+         * <strong>Android only:</strong> - Returns midpoint between the subject's nostrils where the nose meets the
+         * face, or <code>null</code> if not available.
+         */
+        public function get noseBasePosition():Point {
+            return mNoseBasePosition;
         }
 
     }
