@@ -119,6 +119,17 @@ face.mouthPosition : Point
 // not the eye that is on the left when viewing the image
 face.leftEyePosition : Point
 face.rightEyePosition : Point
+
+// Android only - again, left/right are relative to the subject
+face.leftMouthPosition : Point
+face.leftEarPosition : Point
+face.leftEarTipPosition : Point
+face.leftCheekPosition : Point
+face.rightMouthPosition : Point
+face.rightEarPosition : Point
+face.rightEarTipPosition : Point
+face.rightCheekPosition : Point
+face.noseBasePosition : Point
 ```
 
 #### isOperational : Boolean
@@ -145,6 +156,10 @@ ANT build scripts are available in the [build](build/) directory. Edit [build.pr
 The ANE has been written by [Marcel Piestansky](https://twitter.com/marpies) and is distributed under [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
 
 ## Changelog
+
+#### August 25, 2016 (v1.0.2)
+
+* ADDED additional landmark positions to `Face` object
 
 #### August 10, 2016 (v1.0.1)
 
