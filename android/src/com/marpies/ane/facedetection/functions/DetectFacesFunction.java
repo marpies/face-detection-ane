@@ -84,7 +84,10 @@ public class DetectFacesFunction extends BaseFunction {
 						if( !sd.isOperational() ) {
 							sd.release();
 							AIR.log( "Error, detector is not operational." );
-							AIR.dispatchEvent( FaceDetectionEvent.FACE_DETECTION_ERROR, "Detector is not operational. Dependencies may have not been downloaded yet. Please, try again later." );
+							AIR.dispatchEvent(
+                                    FaceDetectionEvent.FACE_DETECTION_ERROR,
+                                    StringUtils.getEventErrorJSON( -1, "Detector is not operational. Dependencies may have not been downloaded yet. Please, try again later." )
+                            );
 							return;
 						}
 
