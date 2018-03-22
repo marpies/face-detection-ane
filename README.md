@@ -157,6 +157,10 @@ The ANE has been written by [Marcel Piestansky](https://twitter.com/marpies) and
 
 ## Changelog
 
+#### March 22, 2018 (v1.0.3)
+
+* FIXED incorrect error message parsing (Android)
+
 #### August 25, 2016 (v1.0.2)
 
 * ADDED additional landmark positions to `Face` object
